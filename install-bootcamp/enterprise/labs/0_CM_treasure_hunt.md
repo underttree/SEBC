@@ -34,7 +34,7 @@ SELECT cpu_percent WHERE roleType=HUE_SERVER;
 - Hive Gateway
 
 ## What steps must be completed before integrating Cloudera Manager with Kerberos?
-I pick up some points. You can check details at [Enabling Kerberos Authentication Using the Wizard](https://www.cloudera.com/documentation/enterprise/5-9-x/topics/cm_sg_intro_kerb.html “Enabling Kerberos Authentication Using the Wizard”)
+I pick up some points. You can check details at [Enabling Kerberos Authentication Using the Wizard](https://www.cloudera.com/documentation/enterprise/5-9-x/topics/cm_sg_intro_kerb.html)
 
 - Ensure you have secured communication between Cloudera Manager Server and Agents.
 - You already have a working Kerberos key distribution center (KDC) and realm setup
