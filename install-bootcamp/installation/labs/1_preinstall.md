@@ -25,16 +25,20 @@
 >UUID=50a9826b-3a50-44d0-ad12-28f2056e9927 /                       xfs     defaults,noatime        0 0`
 
 
-3. If you have ext-based volumes, list the reserve space setting
-using XFS
+# 3. If you have ext-based volumes, list the reserve space setting
+ Using XFS
 
-4. Disable transparent hugepage support
-# cat /sys/kernel/mm/transparent_hugepage/enabled
-[always] madvise never
-# cat /sys/kernel/mm/transparent_hugepage/defrag
-[always] madvise never
+# 4. Disable transparent hugepage support
 
-# cat /etc/rc.d/rc.local 
+ cat /sys/kernel/mm/transparent_hugepage/enabled
+> [always] madvise never
+
+ cat /sys/kernel/mm/transparent_hugepage/defrag
+> [always] madvise never
+
+
+ cat /etc/rc.d/rc.local 
+```
 #!/bin/bash
 # THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
 #
@@ -46,6 +50,7 @@ using XFS
 #
 # Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure
 # that this script will be executed during boot.
+```
 
 touch /var/lock/subsys/local
 
