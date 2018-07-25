@@ -1,12 +1,18 @@
-# 1. Check vm.swappiness on all your nodes
- sudo sysctl -w vm.swappiness=1
-> vm.swappiness = 1
+# CM Install Labs
+## System Configuration Checks
+### 1. Check vm.swappiness on all your nodes
+> sudo sysctl -w vm.swappiness=1
+```
+vm.swappiness = 1
+```
 
- cat /proc/sys/vm/swappiness 
-> 0
+> cat /proc/sys/vm/swappiness 
+```
+ 0
+```
 
-# 2. Show the mount attributes of your volume(s)
- cat /etc/fstab 
+### 2. Show the mount attributes of your volume(s)
+> cat /etc/fstab 
 ```
 #
 # /etc/fstab
@@ -18,19 +24,22 @@
 UUID=50a9826b-3a50-44d0-ad12-28f2056e9927 /                       xfs     defaults,noatime        0 0
 ```
 
-# 3. If you have ext-based volumes, list the reserve space setting
+### 3. If you have ext-based volumes, list the reserve space setting
  Using XFS
 
-# 4. Disable transparent hugepage support
+### 4. Disable transparent hugepage support
 
- cat /sys/kernel/mm/transparent_hugepage/enabled
-> [always] madvise never
+> cat /sys/kernel/mm/transparent_hugepage/enabled
+```
+ [always] madvise never
+```
 
- cat /sys/kernel/mm/transparent_hugepage/defrag
-> [always] madvise never
+> cat /sys/kernel/mm/transparent_hugepage/defrag
+```
+ [always] madvise never
+```
 
-
- cat /etc/rc.d/rc.local 
+> cat /etc/rc.d/rc.local 
 ```
 #!/bin/bash
 # THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
@@ -45,21 +54,22 @@ UUID=50a9826b-3a50-44d0-ad12-28f2056e9927 /                       xfs     defaul
 # that this script will be executed during boot.
 ```
 
-touch /var/lock/subsys/local
+> touch /var/lock/subsys/local
+> echo never > /sys/kernel/mm/transparent_hugepage/enabled
+> echo never > /sys/kernel/mm/transparent_hugepage/defrag 
 
-echo never > /sys/kernel/mm/transparent_hugepage/enabled
-echo never > /sys/kernel/mm/transparent_hugepage/defrag 
-
-# chmod +x /etc/rc.d/rc.local
-# ls -l /etc/rc.d/rc.local 
+> chmod +x /etc/rc.d/rc.local
+> ls -l /etc/rc.d/rc.local 
+```
 -rwxr-xr-x. 1 root root 587 Jul 23 21:29 /etc/rc.d/rc.local
+```
+
+### 5. List your network interface configuration
 
 
-5. List your network interface configuration
-
-
-6. Show that forward and reverse host lookups are correctly resolved
-# cat /etc/hosts
+### 6. Show that forward and reverse host lookups are correctly resolved
+> cat /etc/hosts
+```
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
@@ -68,16 +78,19 @@ echo never > /sys/kernel/mm/transparent_hugepage/defrag
 172.31.36.243	ip-172-31-36-243.us-east-2.compute.internal	sebc03node
 172.31.41.192	ip-172-31-41-192.us-east-2.compute.internal	sebc04node
 172.31.34.134	ip-172-31-34-134.us-east-2.compute.internal	sebc05node
+```
 
-
-7. Show the nscd service is running
-# systemctl status nscd
+### 7. Show the nscd service is running
+> systemctl status nscd
+```
 ● nscd.service - Name Service Cache Daemon
    Loaded: loaded (/usr/lib/systemd/system/nscd.service; disabled; vendor preset: disabled)
    Active: inactive (dead)
+```
 
-8. Show the ntpd service is running
-# systemctl status ntpd
+### 8. Show the ntpd service is running
+> systemctl status ntpd
+```
 ● ntpd.service - Network Time Service
    Loaded: loaded (/usr/lib/systemd/system/ntpd.service; disabled; vendor preset: disabled)
    Active: active (running) since Mon 2018-07-23 22:29:35 UTC; 5s ago
@@ -97,3 +110,4 @@ Jul 23 22:29:35 sebc01node ntpd[17863]: 0.0.0.0 c016 06 restart
 Jul 23 22:29:35 sebc01node ntpd[17863]: 0.0.0.0 c012 02 freq_set kernel 0.000 PPM
 Jul 23 22:29:35 sebc01node ntpd[17863]: 0.0.0.0 c011 01 freq_not_set
 Hint: Some lines were ellipsized, use -l to show in full.
+```

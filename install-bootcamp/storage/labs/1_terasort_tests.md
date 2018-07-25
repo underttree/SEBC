@@ -1,14 +1,16 @@
-# Create an end-user Linux account named with your GitHub handle 
+# HDFS Lab: Test HDFS throughput
 
-sudo -u hdfs hdfs dfs -mkdir /user/underttree
-sudo -u hdfs hdfs dfs -chmod -R 777 /user/underttree
-sudo -u hdfs hdfs dfs -chmod -R 777 /user/
- 
-# Create a 10 GB file using teragen
+### Create an end-user Linux account named with your GitHub handle 
+
+> sudo -u hdfs hdfs dfs -mkdir /user/underttree
+> sudo -u hdfs hdfs dfs -chmod -R 777 /user/underttree
+> sudo -u hdfs hdfs dfs -chmod -R 777 /user/
+
+### Create a 10 GB file using teragen
  CM HDFS > Config > HDFS Block Size 32 MiB
 
-time hadoop jar /opt/cloudera/parcels/CDH-5.9.3-1.cdh5.9.3.p0.4/lib/hadoop-0.20-mapreduce/hadoop-examples.jar teragen 100000000 /user/underttree/tengigafile
-
+> time hadoop jar /opt/cloudera/parcels/CDH-5.9.3-1.cdh5.9.3.p0.4/lib/hadoop-0.20-mapreduce/hadoop-examples.jar teragen 100000000 /user/underttree/tengigafile
+```
 18/07/24 18:45:42 INFO client.RMProxy: Connecting to ResourceManager at ip-172-31-33-182.us-east-2.compute.internal/172.31.33.182:8032
 18/07/24 18:45:42 INFO terasort.TeraSort: Generating 100000000 using 2
 18/07/24 18:45:43 INFO mapreduce.JobSubmitter: number of splits:2
@@ -139,11 +141,13 @@ time hadoop jar /opt/cloudera/parcels/CDH-5.9.3-1.cdh5.9.3.p0.4/lib/hadoop-0.20-
 real	4m35.534s
 user	0m5.804s
 sys	0m0.397s
+```
 
+### Run the terasort command on this file 
 
-# Run the terasort command on this file 
+> time hadoop jar /opt/cloudera/parcels/CDH-5.9.3-1.cdh5.9.3.p0.4/lib/hadoop-0.20-mapreduce/hadoop-examples.jar terasort /user/underttree/tengigafile /user/underttree/tengigasort
 
-time hadoop jar /opt/cloudera/parcels/CDH-5.9.3-1.cdh5.9.3.p0.4/lib/hadoop-0.20-mapreduce/hadoop-examples.jar terasort /user/underttree/tengigafile /user/underttree/tengigasort
+```
 18/07/24 18:58:22 INFO terasort.TeraSort: starting
 18/07/24 18:58:24 INFO input.FileInputFormat: Total input paths to process : 2
 Spent 253ms computing base-splits.
@@ -408,4 +412,4 @@ Caused by: java.io.IOException: Exceeded MAX_FAILED_UNIQUE_FETCHES; bailing-out.
 real	16m36.662s
 user	0m9.830s
 sys	0m0.549s
-
+```

@@ -1,9 +1,15 @@
-sudo -u hdfs hdfs dfs /user/underttree 
+# HDFS Lab: Replicate to another cluster
 
-hadoop jar /opt/cloudera/parcels/CDH-5.9.3-1.cdh5.9.3.p0.4/lib/hadoop-0.20-mapreduce/hadoop-examples.jar teragen 5000000 /user/underttree/500mbfile
+### Name a source directory after your GitHub handle
+> sudo -u hdfs hdfs dfs /user/underttree 
 
-sudo -u hdfs hadoop distcp hdfs://18.222.54.165/user/underttree/500mbfile hdfs://40.70.201.41/thiagoabb/target
+### create a 500 MB file
+> hadoop jar /opt/cloudera/parcels/CDH-5.9.3-1.cdh5.9.3.p0.4/lib/hadoop-0.20-mapreduce/hadoop-examples.jar teragen 5000000 /user/underttree/500mbfile
 
+### Copy your partner's file to your target directory (distcp from my cluster to partner’s cluster)
+> sudo -u hdfs hadoop distcp hdfs://18.222.54.165/user/underttree/500mbfile hdfs://40.70.201.41/thiagoabb/target
+
+```
 18/07/24 22:28:31 INFO tools.DistCp: Input Options: DistCpOptions{atomicCommit=false, syncFolder=false, deleteMissing=false, ignoreFailures=false, overwrite=false, append=false, useDiff=false, useRdiff=false, fromSnapshot=null, toSnapshot=null, skipCRC=false, blocking=true, numListstatusThreads=0, maxMaps=20, mapBandwidth=100, sslConfigurationFile='null', copyStrategy='uniformsize', preserveStatus=[], preserveRawXattrs=false, atomicWorkPath=null, logPath=null, sourceFileListing=null, sourcePaths=[hdfs://18.222.54.165/user/underttree/500mbfile], targetPath=hdfs://40.70.201.41/thiagoabb/target, targetPathExists=true, filtersFile='null'}
 18/07/24 22:28:32 INFO client.RMProxy: Connecting to ResourceManager at ip-172-31-33-182.us-east-2.compute.internal/172.31.33.182:8032
 18/07/24 22:28:32 INFO tools.SimpleCopyListing: Paths (files+dirs) cnt = 4; dirCnt = 1
@@ -135,3 +141,6 @@ java.io.IOException: DistCp failure: Job job_1532463226902_0572 has failed: Appl
 	at org.apache.hadoop.tools.DistCp.run(DistCp.java:141)
 	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
 	at org.apache.hadoop.tools.DistCp.main(DistCp.java:441)
+```
+MapReduce jobs failed because NodeManager processes were down. 
+
