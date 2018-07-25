@@ -36,7 +36,7 @@ do
                      -Dmapreduce.reduce.memory.mb=$k \
                      -Dmapreduce.reduce.java.opts.max.heap=$RED_MB \
 	             /tmp/results/tg-10GB-${i}-${j}-${k}  \
-                     /tmp//results/ts-10GB-${i}-${j}-${k} 1>>tera_${i}_${j}_${k}.out 2>>tera_${i}_${j}_${k}.err                         
+                     /tmp/results/ts-10GB-${i}-${j}-${k} 1>>tera_${i}_${j}_${k}.out 2>>tera_${i}_${j}_${k}.err                         
 
         $HADOOP/hadoop fs -rm -r -skipTrash /tmp/results/tg-10GB-${i}-${j}-${k}                         
         $HADOOP/hadoop fs -rm -r -skipTrash /tmp/results/ts-10GB-${i}-${j}-${k}                 
