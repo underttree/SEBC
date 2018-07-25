@@ -9,19 +9,12 @@
  cat /etc/fstab 
 
 >\#
-
 >\# /etc/fstab
-
 >\# Created by anaconda on Fri Mar 23 17:41:14 2018
-
 >\#
-
 >\# Accessible filesystems, by reference, are maintained under '/dev/disk'
-
 >\# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
-
 >\#
-
 >UUID=50a9826b-3a50-44d0-ad12-28f2056e9927 /                       xfs     defaults,noatime        0 0`
 
 
