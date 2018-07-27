@@ -2,7 +2,7 @@
 
 ### List the cloud provider you are using
 ```
-AWS
+Amazon Web Service (AWS)
 ```
 
 ### List your instances by IP address and DNS name
@@ -25,14 +25,43 @@ Private IP & DNS Name
 ```
 
 ### List the Linux release you are using
+> cat /etc/redhat-release
 ```
+Red Hat Enterprise Linux Server release 7.5 (Maipo)
 ```
 
 ### List the file system capacity for the first node
+> df -h
 ```
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda2       30G  1.3G   29G   5% /
+devtmpfs        7.8G     0  7.8G   0% /dev
+tmpfs           7.8G     0  7.8G   0% /dev/shm
+tmpfs           7.8G   17M  7.8G   1% /run
+tmpfs           7.8G     0  7.8G   0% /sys/fs/cgroup
+tmpfs           1.6G     0  1.6G   0% /run/user/1000
 ```
 
 ### List the command and output for yum repolist enabled
 > yum repolist enabled
 ```
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+repo id                                           repo name                                             status
+!rhui-REGION-client-config-server-7/x86_64        Red Hat Update Infrastructure 2.0 Client Configuratio      2
+!rhui-REGION-rhel-server-releases/7Server/x86_64  Red Hat Enterprise Linux Server 7 (RPMs)              20,693
+!rhui-REGION-rhel-server-rh-common/7Server/x86_64 Red Hat Enterprise Linux Server 7 RH Common (RPMs)       233
+repolist: 20,928
 ```
+
+### List the /etc/passwd entries for goldengate and caldecott
+```
+goldengate:x:2150:1006::/home/goldengate:/bin/bash
+caldecott:x:2250:1005::/home/caldecott:/bin/bash
+```
+
+### List the /etc/group entries for tunnel and bridge
+```
+tunnel:x:1005:
+bridge:x:1006:
+```
+
